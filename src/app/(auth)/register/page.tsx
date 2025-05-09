@@ -8,7 +8,7 @@ import InputField from "@/components/ui/InputField";
 import { useRegister } from "@/hooks/auth/useRegister";
 import CustomButton from "@/components/ui/CustomButton";
 import {
-  register,
+  Register,
   registerStore,
   setRegister,
 } from "@/app/stores/auth/register";
@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
-  const { acceptTerms, setAcceptTerms } = useRegister();
+  const { acceptTerms, setAcceptTerms, setUser } = useRegister();
   const form = useStore(registerStore);
 
   const genderOptions = [
@@ -65,7 +65,7 @@ const RegisterPage = () => {
       return;
     }
 
-    await register();
+    await Register();
   };
 
   return (

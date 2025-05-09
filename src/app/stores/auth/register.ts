@@ -42,7 +42,7 @@ export const setRegister = (val: Partial<RegisterForm>) => {
   registerStore.set({ ...registerStore.get(), ...val });
 };
 
-export const register = async () => {
+export const Register = async () => {
   const router = useRouter();
 
   setRegister({ loading: true });

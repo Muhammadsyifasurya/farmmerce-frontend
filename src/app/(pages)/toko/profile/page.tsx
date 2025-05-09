@@ -233,7 +233,9 @@ const StoreProfile: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 italic">"{review.comment}"</p>
+              <p className="text-sm text-gray-600 italic">
+                &quot{review.comment}&quot
+              </p>
             </div>
           ))}
         </div>
