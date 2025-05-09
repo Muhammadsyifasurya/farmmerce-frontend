@@ -1,7 +1,6 @@
 import { atom } from "nanostores";
 import { GenericResponse } from "@/app/types/genericResponse";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import { customFetch } from "../../composables/CustomFetch";
 import { AxiosError } from "axios";
 
