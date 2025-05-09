@@ -8,6 +8,7 @@ export interface Auth {
   password: string;
   loading: boolean;
   error?: string;
+  rememberMe?: boolean;
 }
 
 export interface Metadata {

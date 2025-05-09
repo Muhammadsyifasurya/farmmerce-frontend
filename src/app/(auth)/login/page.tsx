@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import iconFarmmerce from "../../../../public/farmmerce-iconic.svg";
 import InputField from "@/components/ui/InputField";
 import CustomButton from "@/components/ui/CustomButton";
-import { authStore, set, login } from "@/app/stores/auth/login";
+import { authStore, set, login, restoreSession } from "@/app/stores/auth/login";
 import { useStore } from "@nanostores/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
@@ -17,6 +17,14 @@ const LoginPage = () => {
     email: false,
     password: false,
   });
+
+  useEffect(() => {
+    restoreSession();
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      router.push("/"); // kalau udah login, langsung ke dashboard
+    }
+  }, []);
 
   const fieldError = {
     email: touched.email && !auth.id ? "Please enter your email." : "",
@@ -89,6 +97,8 @@ const LoginPage = () => {
                 id="remember"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-600 text-green-500"
+                checked={authStore.get().rememberMe}
+                onChange={(e) => set({ rememberMe: e.target.checked })}
                 // checked={rememberMe}
                 // onChange={() => setRememberMe(!rememberMe)}
               />

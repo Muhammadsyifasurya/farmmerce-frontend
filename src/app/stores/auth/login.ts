@@ -11,6 +11,7 @@ export const authStore = atom<Auth>({
   id: "",
   password: "",
   loading: false,
+  rememberMe: false,
 });
 
 export const set = (val: Partial<Auth>) => {
@@ -36,7 +37,13 @@ export const login = async () => {
     const data = response;
 
     if (data) {
-      setToken(data.data);
+      // Simpan token di localStorage jika rememberMe aktif
+      const tokenData = data.data;
+      if (authStore.get().rememberMe) {
+        localStorage.setItem("auth_token", JSON.stringify(tokenData));
+      }
+
+      setToken(tokenData);
       toast.success("Log in successful! Please wait...");
     } else throw "";
 
@@ -55,5 +62,14 @@ export const login = async () => {
     }
     set({ error: msg, loading: false });
     console.error(error);
+  }
+};
+
+export const restoreSession = () => {
+  const tokenString = localStorage.getItem("auth_token");
+  if (tokenString) {
+    const tokenData = JSON.parse(tokenString);
+    setToken(tokenData); // gunakan kembali token
+    toast.info("Session restored from previous login.");
   }
 };
