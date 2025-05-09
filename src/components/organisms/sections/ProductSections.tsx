@@ -4,7 +4,7 @@ import { filterProducts } from "@/utils/filterProducts";
 import { FilterSelect } from "@/components/ui/FilterSelect";
 import { CardItem } from "@/components/ui/CardItem";
 import { Product } from "@/interface/products";
-import { addToCart } from "@/app/stores/cartStores";
+import { addToCart } from "@/app/stores/products/cartStores";
 import { useRouter } from "next/navigation";
 import { CreditCard, ShoppingCart } from "lucide-react";
 
@@ -85,7 +85,7 @@ export const ProductSection = ({ products }: ProductSectionProps) => {
       </section>
 
       {/* Product List Section */}
-      <section className="flex flex-wrap justify-center gap-3 p-4 md:gap-9 md:px-16 xl:gap-14 xl:px-52">
+      <section className="flex flex-wrap justify-center gap-3 p-4 md:gap-9 xl:gap-14 2xl:px-52">
         {filteredProducts.map((product) => (
           <CardItem
             key={product.id}

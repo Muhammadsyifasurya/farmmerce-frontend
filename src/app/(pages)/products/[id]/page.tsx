@@ -1,12 +1,11 @@
 "use client";
 
-import { addToCart } from "@/app/stores/cartStores";
+import { addToCart } from "@/app/stores/products/cartStores";
 import { CardItem } from "@/components/ui/CardItem";
 import CustomButton from "@/components/ui/CustomButton";
 import RatingStars from "@/components/ui/RatingStars";
 import { products } from "@/data/dummyData";
-import { ChevronRight, CreditCard, ShoppingCart } from "lucide-react";
-import Image from "next/image";
+import { ChevronRight, Clock, CreditCard, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
@@ -55,7 +54,7 @@ const ProductDetail = ({ params }: ProductDetailPageProps) => {
         <ChevronRight className="mx-1 h-4 w-4 text-gray-400" />
 
         <Link
-          href="/cart"
+          href="#"
           className="flex items-center gap-1 text-green-700 transition hover:underline"
         >
           <span className="font-medium">All Product</span>
@@ -92,18 +91,46 @@ const ProductDetail = ({ params }: ProductDetailPageProps) => {
           </div>
         </div>
         {/* Right - Product Info */}
-        <div className="w-full space-y-5 md:w-1/2">
-          <h2 className="text-2xl font-bold text-green-800 sm:text-3xl">
+        <div className="w-full space-y-6 md:w-1/2">
+          <h2 className="text-3xl font-extrabold text-green-800 transition-colors duration-300 hover:text-green-700 sm:text-4xl">
             {product.name}
           </h2>
-          <p className="text-sm text-gray-500">{product.category}</p>
-          <RatingStars rating={product.rating} />
-          <p className="text-sm text-gray-700 sm:text-base">
+          <p className="text-sm font-semibold text-gray-500">
+            {product.category}
+          </p>
+
+          {/* Rating */}
+          <div className="flex items-center space-x-2">
+            <RatingStars rating={product.rating} />
+          </div>
+
+          <p className="text-lg text-gray-700 sm:text-xl">
             {product.description}
           </p>
 
-          {/* Add Stock Information */}
-          <div className="flex items-center text-sm text-gray-600">
+          {/* Info Toko */}
+          <div className="mt-4 flex items-center space-x-4">
+            <img
+              src={product.store?.logo}
+              alt={product.store?.name}
+              className="h-12 w-12 rounded-full border-2 border-green-500 transition-transform duration-300 hover:scale-110"
+            />
+            <div className="text-sm font-medium text-gray-600">
+              <span className="font-semibold">{product.store?.name}</span>
+              <span className="flex items-center gap-2 text-sm text-gray-600">
+                <Clock size={16} className="text-gray-800" />
+                <span className="text-gray-800">± 2 Jam</span>
+                <p className="text-gray-500">pesanan diproses</p>
+              </span>
+            </div>
+
+            <button className="ml-4 rounded-full border-2 border-green-600 px-6 py-1 text-sm font-medium text-green-600 transition-all duration-300 hover:border-green-700 hover:bg-green-600 hover:text-white">
+              Follow
+            </button>
+          </div>
+
+          {/* Stock Information */}
+          <div className="mt-3 flex items-center text-sm text-gray-600">
             {product.stock && product.stock > 0 ? (
               <span className="font-medium text-green-600">
                 Stok Tersedia: {product.stock} {product.unit}
@@ -113,30 +140,33 @@ const ProductDetail = ({ params }: ProductDetailPageProps) => {
             )}
           </div>
 
-          <div className="flex items-center justify-end gap-7">
-            <label className="md:text-md mb-1 block text-gray-600">Qty :</label>
-            <div className="inline-flex items-center gap-3 rounded-full bg-gray-100 px-3 py-1 sm:gap-5">
+          {/* Quantity Selector */}
+          <div className="mt-4 flex items-center gap-2 text-lg font-medium">
+            <label className="text-gray-600">Qty:</label>
+            <div className="inline-flex items-center justify-center gap-3 rounded-full bg-gray-100 px-5 py-1 shadow-md">
               <button
-                className="cursor-pointer text-lg text-gray-600 hover:text-green-700"
+                className="text-xl text-gray-600 transition-colors duration-200 hover:text-green-700"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               >
                 -
               </button>
-              <span className="text-base font-semibold sm:text-lg">
-                {quantity}
-              </span>
+              <span className="text-lg font-semibold">{quantity}</span>
               <button
-                className="cursor-pointer text-lg text-gray-600 hover:text-green-700"
+                className="text-xl text-gray-600 transition-colors duration-200 hover:text-green-700"
                 onClick={() => setQuantity((q) => q + 1)}
               >
                 +
               </button>
             </div>
           </div>
-          <div className="flex justify-end text-2xl font-bold text-green-700 transition-colors duration-300 sm:text-3xl">
+
+          {/* Price */}
+          <div className="mt-4 flex justify-end text-3xl font-bold text-green-700">
             Rp {totalPrice.toLocaleString()}
           </div>
-          <div className="flex justify-end gap-2 sm:flex-row sm:gap-4">
+
+          {/* Buttons */}
+          <div className="mt-6 flex justify-end gap-3">
             <CustomButton
               type="button"
               icon={<ShoppingCart size={16} />}
@@ -150,7 +180,7 @@ const ProductDetail = ({ params }: ProductDetailPageProps) => {
                 };
                 addToCart(cartItem); // Menambahkan item ke cart
               }}
-              className="flex items-center md:px-5 md:py-3"
+              className="flex items-center rounded-full bg-green-600 px-6 py-3 text-white transition-all duration-300 hover:bg-green-700"
             />
 
             <CustomButton
@@ -167,7 +197,7 @@ const ProductDetail = ({ params }: ProductDetailPageProps) => {
                 addToCart(cartItem); // Menambahkan item ke cart terlebih dahulu
                 router.push("/checkout"); // Arahkan ke halaman checkout
               }}
-              className="flex items-center md:px-5 md:py-3"
+              className="flex items-center rounded-full bg-gray-800 px-6 py-3 text-white transition-all duration-300 hover:bg-gray-900"
             />
           </div>
         </div>

@@ -3,35 +3,38 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import iconFarmmerce from "../../../../public/farmmerce-iconic.svg";
-// import { useLogin } from "@/hooks/auth/useLogin";
 import InputField from "@/components/ui/InputField";
-// import FormError from "@/components/ui/FormError";
 import CustomButton from "@/components/ui/CustomButton";
-import { authStore, set, login } from "@/app/stores/login";
+import { authStore, set, login } from "@/app/stores/auth/login";
 import { useStore } from "@nanostores/react";
 import { useRouter } from "next/navigation";
-
-const getFormErrors = (
-  touched: { email: boolean; password: boolean },
-  form: { email: string; password: string },
-) => {
-  return {
-    email: touched.email && !form.email ? "Please enter your email." : "",
-    password:
-      touched.password && !form.password ? "Please enter your password." : "",
-  };
-};
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
-  const store = useStore(authStore);
+  const auth = useStore(authStore);
   const router = useRouter();
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+  });
+
+  const fieldError = {
+    email: touched.email && !auth.id ? "Please enter your email." : "",
+    password:
+      touched.password && !auth.password ? "Please enter your password." : "",
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    const { id, password } = authStore.get();
+    if (!id || !password) {
+      toast.error("Email dan password harus diisi.");
+      return;
+    }
+
     try {
-      login();
-      if (!store.loading) {
-        router.push("/");
-      }
+      await login();
+      router.push("/");
     } catch (error) {
       console.log("error", error);
     }
@@ -39,6 +42,7 @@ const LoginPage = () => {
 
   return (
     <section className="flex h-screen w-full items-center justify-center bg-gray-900">
+      <ToastContainer position="top-right" autoClose={3000} />
       {/* Form Container */}
       <div className="w-full max-w-md rounded-lg bg-gray-800 p-8 shadow-lg backdrop-blur-md">
         {/* Heading */}
@@ -55,12 +59,12 @@ const LoginPage = () => {
         </div>
 
         {/* Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {/* <InputField
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <InputField
             id="email"
             type="email"
-            value={form.email}
-            onChange={(e) => setFormLogin({ email: e.target.value })}
+            value={auth.id}
+            onChange={(e) => set({ id: e.target.value })}
             onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
             placeholder="Enter your email"
             label="Email"
@@ -70,34 +74,13 @@ const LoginPage = () => {
           <InputField
             id="password"
             type="password"
-            value={form.password}
-            onChange={(e) => setFormLogin({ password: e.target.value })}
+            value={auth.password}
+            onChange={(e) => set({ password: e.target.value })}
             onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
             label="Password"
             placeholder="••••••••"
             error={fieldError.password}
-          /> */}
-          <InputField
-            id="email"
-            type="email"
-            value={store.id}
-            onChange={(e) => set({ id: e.target.value })}
-            placeholder="Enter your email"
-            label="Email"
-            // error={fieldError.email}
           />
-
-          <InputField
-            id="password"
-            type="password"
-            value={store.password}
-            onChange={(e) => set({ password: e.target.value })}
-            label="Password"
-            placeholder="••••••••"
-            // error={fieldError.password}
-          />
-
-          {/* {formError && <FormError message={formError} />} */}
 
           {/* Remember Me and Forgot Password */}
           <div className="flex items-center justify-between">

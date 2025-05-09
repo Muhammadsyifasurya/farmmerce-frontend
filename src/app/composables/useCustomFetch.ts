@@ -22,7 +22,7 @@ interface OptionsFetch {
   encodedBody?: { [key: string]: string };
 }
 
-export const useAuthFetch = async <T>(options: OptionsFetch): Promise<T> => {
+export const customFetch = async <T>(options: OptionsFetch): Promise<T> => {
   const {
     url,
     method,

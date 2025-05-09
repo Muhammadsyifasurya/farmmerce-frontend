@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export const HeroSection = ({ products }: HeroSectionProps) => {
   return (
     <section className="relative w-full bg-gradient-to-b from-green-50 via-green-100 to-green-50 py-14 md:py-10">
-      <div className="relative z-10 mx-auto flex flex-col-reverse items-center gap-10 px-6 md:flex-row md:items-center md:px-16 xl:gap-16 xl:px-52">
+      <div className="relative z-10 mx-auto flex flex-col-reverse items-center gap-10 px-6 md:flex-row md:items-center md:px-16 xl:gap-16 2xl:px-52">
         {/* Left Side - Promotion / Ad */}
         <div className="flex flex-col items-start text-left md:w-1/2">
           <span className="mb-4 inline-block rounded-full bg-[#bdffb6] px-4 py-2 text-sm font-semibold text-green-600 backdrop-blur-3xl">

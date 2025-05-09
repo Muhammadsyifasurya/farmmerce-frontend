@@ -1,12 +1,34 @@
+// export interface Product {
+//   id: string;
+//   name: string;
+//   image: string;
+//   price: number;
+//   description: string;
+//   category: string;
+//   stock: number;
+//   rating: number;
+//   duration?: string;
+//   unit?: string;
+// }
+
+export interface Store {
+  store_id: string;
+  owner_id: string; // ← relasi ke User
+  name: string;
+  logo: string;
+  description?: string;
+}
+
 export interface Product {
   id: string;
+  store: Store;
   name: string;
   image: string;
   price: number;
   description: string;
   category: string;
   stock: number;
-  rating: number;
+  rating: number; // rata-rata rating dari Review[]
   duration?: string;
   unit?: string;
 }

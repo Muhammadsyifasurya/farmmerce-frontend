@@ -2,7 +2,7 @@ import AboutUs from "@/components/organisms/about";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-[82dvh]">
+    <div className="min-h-screen">
       <AboutUs />
     </div>
   );

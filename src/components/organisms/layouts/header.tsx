@@ -16,30 +16,25 @@ import { useRouter } from "next/navigation";
 import { setUser } from "@/app/stores/auth";
 import Hamburger from "@/components/ui/Hamburger";
 import SearchBar from "@/components/ui/SearchBar";
-import { $cartItems, $cartTotalItems } from "@/app/stores/cartStores";
+import { $cartTotalItems } from "@/app/stores/products/cartStores";
 import { useStore } from "@nanostores/react";
 import CartModal from "@/components/popups/CartModal";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-// const jakartaSans = Plus_Jakarta_Sans({
-//   subsets: ["latin"],
-// });
 
-const Header = () => {
+interface HamburgerButtonProps {
+  toggleSidebar: () => void;
+  isSidebarOpen: boolean;
+}
+
+const Header = ({ toggleSidebar, isSidebarOpen }: HamburgerButtonProps) => {
   const router = useRouter();
   const totalItems = useStore($cartTotalItems);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const cartItems = $cartItems.get();
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   );
-
-  const [isSidebarOpen, setSidebarOpen] = React.useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen((prev) => !prev);
-  };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -66,7 +61,7 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute top-0 z-50 w-full">
+    <div className="fixed top-0 z-40 w-full">
       <AppBar position="static" sx={{ backgroundColor: "#1E2939" }}>
         <Container maxWidth="xl">
           <Toolbar

@@ -4,12 +4,14 @@ import Header from "@/components/organisms/layouts/header";
 import { useEffect, useState } from "react";
 import { setUser } from "../stores/auth";
 import { useRouter } from "next/navigation";
+import Sidebar from "@/components/organisms/layouts/sidebar";
 
 export default function PageLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const rememberMe = localStorage.getItem("rememberMe") === "true";
@@ -38,9 +40,22 @@ export default function PageLayout({
     return null;
   }
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen); // Toggle sidebar open/close
+  };
+
   return (
     <section>
-      <Header />
+      {isSidebarOpen && (
+        <div
+          className={`fixed inset-0 z-50 bg-black backdrop-blur-lg transition-all duration-300 ease-in-out ${
+            isSidebarOpen ? "opacity-60" : "opacity-0"
+          }`}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <Sidebar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <div>{children}</div>
       <FooterPage />
     </section>

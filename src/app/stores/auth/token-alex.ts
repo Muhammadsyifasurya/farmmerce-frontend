@@ -1,5 +1,5 @@
 import { atom } from "nanostores";
-import { useAuthFetch } from "@/app/composables/useCustomFetch";
+import { useAuthFetch } from "@/app/composables/CustomFetch";
 import { GenericResponse } from "@/app/types/genericResponse";
 import { ExchangeToken } from "@/app/types/exchangesToken";
 import { Auth, Token, LoginResponse } from "@/app/types/auth";
