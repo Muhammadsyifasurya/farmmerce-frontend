@@ -6,7 +6,7 @@ import iconFarmmerce from "../../../../public/farmmerce-iconic.svg";
 import { useLogin } from "@/hooks/auth/useLogin";
 import InputField from "@/components/ui/InputField";
 import CustomButton from "@/components/ui/CustomButton";
-import { authStore, set, login } from "@/app/stores/login";
+import { authStore, set, login } from "@/app/stores/auth/login";
 import { useStore } from "@nanostores/react";
 import { useRouter } from "next/navigation";
 
@@ -57,7 +57,7 @@ const LoginPage = () => {
             </p>
           </div>
         </div>
-    
+
         {/* Form */}
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <InputField

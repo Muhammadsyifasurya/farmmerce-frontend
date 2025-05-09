@@ -4,7 +4,7 @@ import { filterProducts } from "@/utils/filterProducts";
 import { FilterSelect } from "@/components/ui/FilterSelect";
 import { CardItem } from "@/components/ui/CardItem";
 import { Product } from "@/interface/products";
-import { addToCart } from "@/app/stores/cartStores";
+import { addToCart } from "@/app/stores/products/cartStores";
 import { useRouter } from "next/navigation";
 import { CreditCard, ShoppingCart } from "lucide-react";
 

@@ -4,7 +4,7 @@ import {
   $cartItems,
   removeFromCart,
   updateQuantity,
-} from "@/app/stores/cartStores";
+} from "@/app/stores/products/cartStores";
 import Image from "next/image";
 import CustomButton from "../ui/CustomButton";
 import { useRouter } from "next/navigation";

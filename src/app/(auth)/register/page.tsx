@@ -7,7 +7,11 @@ import TermsModal from "@/components/popups/TermModal";
 import InputField from "@/components/ui/InputField";
 import { useRegister } from "@/hooks/auth/useRegister";
 import CustomButton from "@/components/ui/CustomButton";
-import { register, registerStore, setRegister } from "@/app/stores/register";
+import {
+  register,
+  registerStore,
+  setRegister,
+} from "@/app/stores/auth/register";
 import { useStore } from "@nanostores/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

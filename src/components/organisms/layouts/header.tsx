@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import { setUser } from "@/app/stores/auth";
 import Hamburger from "@/components/ui/Hamburger";
 import SearchBar from "@/components/ui/SearchBar";
-import { $cartTotalItems } from "@/app/stores/cartStores";
+import { $cartTotalItems } from "@/app/stores/products/cartStores";
 import { useStore } from "@nanostores/react";
 import CartModal from "@/components/popups/CartModal";
 

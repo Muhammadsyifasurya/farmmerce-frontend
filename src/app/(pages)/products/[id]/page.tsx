@@ -1,6 +1,6 @@
 "use client";
 
-import { addToCart } from "@/app/stores/cartStores";
+import { addToCart } from "@/app/stores/products/cartStores";
 import { CardItem } from "@/components/ui/CardItem";
 import CustomButton from "@/components/ui/CustomButton";
 import RatingStars from "@/components/ui/RatingStars";

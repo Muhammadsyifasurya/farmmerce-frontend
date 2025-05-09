@@ -1,5 +1,5 @@
 import { atom } from "nanostores";
-import { useAuthFetch } from "../composables/CustomFetch";
+import { useAuthFetch } from "../../composables/CustomFetch";
 
 // Tipe data untuk produk
 export type Product = {

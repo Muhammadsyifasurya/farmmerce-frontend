@@ -14,7 +14,7 @@ import {
   $cartItems,
   removeFromCart,
   updateQuantity,
-} from "@/app/stores/cartStores";
+} from "@/app/stores/products/cartStores";
 import { useStore } from "@nanostores/react";
 import Link from "next/link";
 import ConfirmModal from "@/components/popups/ConfirmModal";
