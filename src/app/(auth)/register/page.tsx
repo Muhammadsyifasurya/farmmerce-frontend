@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
-  const { acceptTerms, setAcceptTerms, setUser } = useRegister();
+  const { acceptTerms, setAcceptTerms } = useRegister();
   const form = useStore(registerStore);
 
   const genderOptions = [

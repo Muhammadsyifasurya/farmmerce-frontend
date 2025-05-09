@@ -7,6 +7,7 @@ export interface Auth {
   id: string;
   password: string;
   loading: boolean;
+  error?: string;
 }
 
 export interface Metadata {

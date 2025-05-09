@@ -8,7 +8,7 @@ export const tokenStore = atom<Token>({
   refreshToken: "",
 });
 
-export const set = (val: any) => {
+export const set = (val: Partial<Token>) => {
   tokenStore.set({ ...tokenStore.get(), ...val });
 };
 
@@ -21,7 +21,6 @@ export const setToken = (data: ExchangeToken) => {
     return;
   }
 
-  const dataToken = tokenStore.get().token;
   console.log("setToken", data);
   const token = {
     accessToken: data.access_token,

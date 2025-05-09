@@ -82,8 +82,12 @@ export const useLogin = () => {
 
         router.push("/");
       }
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || "Something went wrong. Please try again.");
+      } else {
+        setError("An unknown error occurred.");
+      }
       throw err;
     } finally {
       setLoading(false);

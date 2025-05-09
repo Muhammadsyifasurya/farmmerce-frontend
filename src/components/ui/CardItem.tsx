@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "@mui/material";
-import { ClockIcon, Star, StarHalf } from "lucide-react";
+import { ClockIcon } from "lucide-react";
 import Link from "next/link";
 import RatingStars from "./RatingStars";
 

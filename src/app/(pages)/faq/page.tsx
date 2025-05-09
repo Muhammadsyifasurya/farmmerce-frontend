@@ -16,7 +16,7 @@ const FAQ: React.FC = () => {
         Frequently Asked Questions
       </h2>
       <p className="mt-4 text-center text-lg text-gray-700">
-        Got questions? We've got answers. Here are some of the most common
+        Got questions? We&apos;ve got answers. Here are some of the most common
         queries about Farmmerce.
       </p>
 
@@ -119,8 +119,8 @@ const FAQ: React.FC = () => {
             {open === 3 && (
               <div className="rounded-lg bg-gray-50 px-6 py-4 shadow-sm">
                 <p className="text-gray-600">
-                  Yes! Once your order is shipped, you'll receive a tracking
-                  number via email, allowing you to track your order in
+                  Yes! Once your order is shipped, you&apos;ll receive a
+                  tracking number via email, allowing you to track your order in
                   real-time.
                 </p>
               </div>
@@ -147,8 +147,8 @@ const FAQ: React.FC = () => {
                 <p className="text-gray-600">
                   To become a seller on Farmmerce, you need to register as a
                   farmer or local producer, provide relevant information, and go
-                  through our verification process. Once approved, you'll be
-                  able to list your products on our platform.
+                  through our verification process. Once approved, you&apos;ll
+                  be able to list your products on our platform.
                 </p>
               </div>
             )}
@@ -159,7 +159,7 @@ const FAQ: React.FC = () => {
       {/* Contact for Further Queries */}
       <div className="mt-10 text-center">
         <p className="text-lg text-gray-600">
-          Can't find the answer you're looking for? Feel free to{" "}
+          Can&apos;t find the answer you&apos;re looking for? Feel free to{" "}
           <Link href="/contact" className="font-semibold text-green-700">
             contact us
           </Link>

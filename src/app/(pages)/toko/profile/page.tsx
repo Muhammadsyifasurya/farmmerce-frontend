@@ -63,7 +63,7 @@ const StoreProfile: React.FC = () => {
             <p>📍 {store.location}</p>
             <p>🕘 Jam Operasional: {store.schedule}</p>
             <p>
-              ✅ Status:{" "}
+              ✅ Status:
               <span className="font-semibold text-green-600">
                 {store.status}
               </span>

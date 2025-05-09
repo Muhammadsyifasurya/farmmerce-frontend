@@ -3,6 +3,7 @@ import { GenericResponse } from "@/app/types/genericResponse";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { customFetch } from "../../composables/CustomFetch";
+import { AxiosError } from "axios";
 
 type RegisterForm = {
   email: string;
@@ -18,6 +19,11 @@ type RegisterForm = {
   error?: string | null;
 };
 
+type RegisterResponse = {
+  // Definisikan struktur data yang kamu terima dari API
+  message: string;
+  // properti lain yang kamu harapkan dari API
+};
 export const registerStore = atom<RegisterForm>({
   email: "",
   username: "",
@@ -44,7 +50,7 @@ export const register = async () => {
   const state = registerStore.get();
 
   try {
-    const response = await customFetch<GenericResponse<any>>({
+    const response = await customFetch<GenericResponse<RegisterResponse>>({
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
       url: "/api/v1/auth/register",
       method: "post",
@@ -83,10 +89,13 @@ export const register = async () => {
     }
 
     setRegister({ loading: false });
-  } catch (error: any) {
+  } catch (error: unknown) {
     let msg = "Registration failed";
-    if (error?.response)
+
+    if (error instanceof AxiosError) {
+      // Cek apakah error adalah instance dari AxiosError
       msg = error?.response?.data?.message || "Registration failed";
+    }
     toast.error(msg);
     setRegister({ error: msg, loading: false });
     console.error(error);

@@ -1,10 +1,5 @@
 "use client";
-import {
-  FaChartBar,
-  FaBoxOpen,
-  FaMoneyBillWave,
-  FaShoppingCart,
-} from "react-icons/fa";
+import { FaBoxOpen, FaMoneyBillWave, FaShoppingCart } from "react-icons/fa";
 import React from "react";
 
 const stats = {

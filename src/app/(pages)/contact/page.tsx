@@ -35,8 +35,8 @@ const ContactUs: React.FC = () => {
         Contact Us
       </h2>
       <p className="mt-4 text-center text-lg text-gray-700">
-        Have any questions? We'd love to hear from you! Fill out the form below
-        to get in touch with us.
+        Have any questions? We&apos;d love to hear from you! Fill out the form
+        below to get in touch with us.
       </p>
 
       {/* Form Section */}
