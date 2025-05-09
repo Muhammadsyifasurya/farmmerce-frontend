@@ -9,6 +9,7 @@ import CustomButton from "@/components/ui/CustomButton";
 import { authStore, set, login } from "@/app/stores/auth/login";
 import { useStore } from "@nanostores/react";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
   const store = useStore(authStore);
@@ -29,7 +30,7 @@ const LoginPage = () => {
     e.preventDefault();
     const { id, password } = authStore.get();
     if (!id || !password) {
-      alert("Email dan password harus diisi."); // ganti alert sesuai selera
+      toast.error("Email dan password harus diisi.");
       return;
     }
 
@@ -43,6 +44,7 @@ const LoginPage = () => {
 
   return (
     <section className="flex h-screen w-full items-center justify-center bg-gray-900">
+      <ToastContainer position="top-right" autoClose={3000} />
       {/* Form Container */}
       <div className="w-full max-w-md rounded-lg bg-gray-800 p-8 shadow-lg backdrop-blur-md">
         {/* Heading */}

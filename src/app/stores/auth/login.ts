@@ -42,9 +42,8 @@ export const login = async () => {
     set({ loading: false });
   } catch (error: any) {
     let msg = "Login failed";
-    if (error?.response)
-      msg = error?.response?.data?.error?.message_title || "Login failed";
-    toast.error(msg);
+    if (error?.response) toast.error(msg);
+    msg = error?.response?.data?.error?.message_title || "Login failed";
     set({ error: msg, loading: false });
     console.error(error);
   }
