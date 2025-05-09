@@ -1,3 +1,5 @@
+import { Filters, Product } from "@/interface/products";
+
 export const filterProducts = (products: Product[], filters: Filters) => {
   let filtered = [...products];
 
