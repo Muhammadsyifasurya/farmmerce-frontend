@@ -43,8 +43,6 @@ export const setRegister = (val: Partial<RegisterForm>) => {
 };
 
 export const Register = async () => {
-  const router = useRouter();
-
   setRegister({ loading: true });
 
   const state = registerStore.get();
@@ -85,7 +83,6 @@ export const Register = async () => {
         loading: false,
         error: null,
       });
-      router.push("/login");
     }
 
     setRegister({ loading: false });

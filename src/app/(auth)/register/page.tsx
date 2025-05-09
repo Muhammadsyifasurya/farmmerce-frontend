@@ -16,9 +16,10 @@ import { useStore } from "@nanostores/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
-  const { acceptTerms, setAcceptTerms, setUser } = useRegister();
+  const { acceptTerms, setAcceptTerms } = useRegister();
   const form = useStore(registerStore);
 
   const genderOptions = [
@@ -34,6 +35,7 @@ const RegisterPage = () => {
   const [step, setStep] = useState(1);
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +68,7 @@ const RegisterPage = () => {
     }
 
     await Register();
+    router.push("/login");
   };
 
   return (
