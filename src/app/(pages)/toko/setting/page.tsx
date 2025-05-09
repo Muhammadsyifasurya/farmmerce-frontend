@@ -44,6 +44,7 @@ const StoreSettingsPage: React.FC = () => {
             value={form.name}
             onChange={handleChange}
             className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+            placeholder="name"
           />
         </div>
 
@@ -53,6 +54,7 @@ const StoreSettingsPage: React.FC = () => {
             Deskripsi
           </label>
           <textarea
+            placeholder="Enter your description..."
             name="description"
             value={form.description}
             onChange={handleChange}
@@ -71,6 +73,8 @@ const StoreSettingsPage: React.FC = () => {
             value={form.location}
             onChange={handleChange}
             className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+            placeholder="location"
+            title="location"
           />
         </div>
 
@@ -85,6 +89,8 @@ const StoreSettingsPage: React.FC = () => {
               value={form.contact}
               onChange={handleChange}
               className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+              placeholder="Masukkan nomor WhatsApp"
+              title="Nomor WhatsApp yang dapat dihubungi"
             />
           </div>
           <div>
@@ -96,6 +102,8 @@ const StoreSettingsPage: React.FC = () => {
               value={form.instagram}
               onChange={handleChange}
               className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+              placeholder="Masukkan username Instagram"
+              title="Username Instagram toko"
             />
           </div>
           <div>
@@ -107,6 +115,8 @@ const StoreSettingsPage: React.FC = () => {
               value={form.facebook}
               onChange={handleChange}
               className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+              placeholder="Masukkan URL Facebook"
+              title="URL Facebook toko"
             />
           </div>
           <div>
@@ -118,6 +128,8 @@ const StoreSettingsPage: React.FC = () => {
               value={form.schedule}
               onChange={handleChange}
               className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
+              placeholder="Masukkan jam operasional"
+              title="Jam operasional toko"
             />
           </div>
         </div>
@@ -128,9 +140,10 @@ const StoreSettingsPage: React.FC = () => {
             Status
           </label>
           <select
+            title="status"
             name="status"
             value={form.status}
-            onChange={handleChange}
+            onChange={() => handleChange}
             className="mt-1 w-full rounded-md border px-3 py-2 text-gray-800 shadow-sm"
           >
             <option>Aktif</option>
