@@ -15,7 +15,6 @@ import {
 import { useStore } from "@nanostores/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
@@ -230,6 +229,15 @@ const RegisterPage = () => {
               </div>
             </>
           )}
+          <p className="text-center text-sm text-gray-400">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="font-semibold text-green-400 hover:underline"
+            >
+              Sign In
+            </Link>
+          </p>
         </form>
       </div>
 
