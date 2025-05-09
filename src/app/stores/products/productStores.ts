@@ -1,5 +1,5 @@
+import { customFetch } from "@/app/composables/CustomFetch";
 import { atom } from "nanostores";
-import { useAuthFetch } from "../../composables/CustomFetch";
 
 // Tipe data untuk produk
 export type Product = {
@@ -24,7 +24,7 @@ export const fetchProducts = async () => {
 
   try {
     // Panggil API untuk mengambil data produk
-    const data = await useAuthFetch<{ data: Product[] }>({
+    const data = await customFetch<{ data: Product[] }>({
       url: "/api/v1/auth/products", // endpoint produk
       method: "get",
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // Base URL

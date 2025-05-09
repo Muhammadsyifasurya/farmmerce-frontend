@@ -31,8 +31,7 @@ const ForgotPasswordPage = () => {
 
       setSuccessMessage("Reset link has been sent to your email!");
       setEmail(""); // Reset form
-    } catch (err: any) {
-      setErrorMessage(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
     } finally {
       setLoading(false);
     }
