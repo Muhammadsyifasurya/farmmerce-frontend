@@ -1,0 +1,94 @@
+import { atom } from "nanostores";
+import { GenericResponse } from "@/app/types/genericResponse";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { customFetch } from "../composables/CustomFetch";
+
+type RegisterForm = {
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  address: string;
+  postalCode: string;
+  loading?: boolean;
+  error?: string | null;
+};
+
+export const registerStore = atom<RegisterForm>({
+  email: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+  first_name: "",
+  last_name: "",
+  gender: "",
+  address: "",
+  postalCode: "",
+  loading: false,
+  error: null,
+});
+
+export const setRegister = (val: Partial<RegisterForm>) => {
+  registerStore.set({ ...registerStore.get(), ...val });
+};
+
+export const register = async () => {
+  const router = useRouter();
+
+  setRegister({ loading: true });
+
+  const state = registerStore.get();
+
+  try {
+    const response = await customFetch<GenericResponse<any>>({
+      baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+      url: "/api/v1/auth/register",
+      method: "post",
+      data: {
+        email: state.email,
+        username: state.email,
+        password: state.password,
+        first_name: state.first_name,
+        last_name: state.last_name,
+        gender: state.gender || "unknown",
+        address: state.address || "-",
+        postal_code: parseInt(state.postalCode) || 0,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response?.data) {
+      toast.success("Registration successful! Please log in.");
+      setRegister({
+        // Kosongkan form setelah sukses register
+        email: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+        first_name: "",
+        last_name: "",
+        gender: "",
+        address: "",
+        postalCode: "",
+        loading: false,
+        error: null,
+      });
+      router.push("/login");
+    }
+
+    setRegister({ loading: false });
+  } catch (error: any) {
+    let msg = "Registration failed";
+    if (error?.response)
+      msg = error?.response?.data?.message || "Registration failed";
+    toast.error(msg);
+    setRegister({ error: msg, loading: false });
+    console.error(error);
+  }
+};

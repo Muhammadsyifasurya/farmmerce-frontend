@@ -1,9 +1,10 @@
 import { atom } from "nanostores";
-import { useAuthFetch } from "@/app/composables/useCustomFetch";
+import { customFetch } from "@/app/composables/CustomFetch";
 import { GenericResponse } from "@/app/types/genericResponse";
 import { Auth, Token, LoginResponse } from "@/app/types/auth";
 import { Login } from "@/app/types/login";
 import { setToken } from "./token";
+import { toast } from "react-toastify";
 
 export const authStore = atom<Auth>({
   id: "",
@@ -18,7 +19,7 @@ export const set = (val: any) => {
 export const login = async () => {
   set({ loading: true });
   try {
-    const response = await useAuthFetch<GenericResponse<LoginResponse>>({
+    const response = await customFetch<GenericResponse<LoginResponse>>({
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
       url: "/api/v1/auth/login",
       method: "post",
@@ -35,6 +36,7 @@ export const login = async () => {
 
     if (data) {
       setToken(data.data);
+      toast.success("Log in successful! Please wait...");
     } else throw "";
 
     set({ loading: false });
@@ -42,7 +44,7 @@ export const login = async () => {
     let msg = "Login failed";
     if (error?.response)
       msg = error?.response?.data?.error?.message_title || "Login failed";
-
+    toast.error(msg);
     set({ error: msg, loading: false });
     console.error(error);
   }

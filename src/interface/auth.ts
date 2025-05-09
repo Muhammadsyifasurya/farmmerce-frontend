@@ -9,9 +9,13 @@ export interface User {
 }
 
 export interface RegisterProps {
-  fullName: string;
   email: string;
+  username: string;
   password: string;
   confirmPassword: string;
-  acceptTerms: boolean;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  address: string;
+  postalCode: string;
 }
