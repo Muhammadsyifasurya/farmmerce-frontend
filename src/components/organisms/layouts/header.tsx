@@ -48,7 +48,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HamburgerButtonProps) => {
     localStorage.removeItem("user");
     localStorage.removeItem("rememberMe");
     sessionStorage.removeItem("user");
-
+    localStorage.removeItem("auth_token"); // hapus token
     document.cookie = "auth_token=; max-age=0; path=/";
 
     setUser(null);
