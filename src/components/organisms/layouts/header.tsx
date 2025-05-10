@@ -60,6 +60,10 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HamburgerButtonProps) => {
     setIsModalOpen((prev) => !prev);
   };
 
+  const handleOpenProfile = () => {
+    router.push("/profile");
+  };
+
   return (
     <div className="fixed top-0 z-40 w-full">
       <AppBar position="static" sx={{ backgroundColor: "#1E2939" }}>
@@ -158,6 +162,9 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HamburgerButtonProps) => {
                       handleCloseUserMenu();
                       if (setting === "Logout") {
                         handleLogout();
+                      }
+                      if (setting === "Profile") {
+                        handleOpenProfile();
                       }
                     }}
                   >

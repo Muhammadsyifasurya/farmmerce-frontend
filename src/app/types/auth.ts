@@ -19,3 +19,19 @@ export interface LoginResponse {
   refresh_token: string;
   token_type: "bearer";
 }
+
+// types/user.ts
+export interface UserProfile {
+  id: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  gender: string;
+  address: string;
+  postal_code: number;
+  avatar: string | null;
+  role: number;
+  created_at: string;
+  updated_at: string;
+}

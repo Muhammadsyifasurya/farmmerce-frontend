@@ -9,7 +9,7 @@ import iconFarmmerce from "../../../../public/farmmerce-iconic.svg";
 
 const FooterPage = () => {
   return (
-    <footer className="mt-20 bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="mx-auto max-w-7xl px-4 pt-12 pb-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           {/* Logo & Description */}
